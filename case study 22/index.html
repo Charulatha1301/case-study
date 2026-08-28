@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Upload Preview</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h1>Upload an Image</h1>
+
+		<input type="file" id="imageInput" accept="image/*">
+
+		<div class="preview">
+			<p id="previewText">Image preview will appear here</p>
+			<img id="previewImage">
+		</div>
+
+		<button onclick="submitImage()">Submit</button>
+
+		<p id="message"></p>
+
+	</div>
+
+	<script src="script.js"></script>
+
+</body>
+</html>

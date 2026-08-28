@@ -1,0 +1,37 @@
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	background-color: #f2f2f2;
+}
+
+#board {
+	width: 400px;
+	height: 400px;
+	margin: 30px auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 5px;
+}
+
+.tile {
+	background-color: #333;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 25px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.empty {
+	background-color: #ddd;
+	cursor: default;
+}
+
+button {
+	padding: 10px 25px;
+	font-size: 16px;
+	cursor: pointer;
+}

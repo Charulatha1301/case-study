@@ -1,0 +1,37 @@
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	padding: 40px;
+	background-color: #f2f2f2;
+}
+
+button {
+	padding: 12px 25px;
+	background-color: #333;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.box {
+	width: 80px;
+	height: 80px;
+	background-color: #333;
+	margin-top: 50px;
+	position: relative;
+}
+
+.move {
+	animation: moveBox 3s linear;
+}
+
+@keyframes moveBox {
+	from {
+		left: 0;
+	}
+
+	to {
+		left: 70%;
+	}
+}

@@ -1,0 +1,40 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 30px;
+	background-color: #f2f2f2;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	max-width: 1000px;
+	margin: auto;
+}
+
+.photo {
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.photo img {
+	width: 100%;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.photo img:hover {
+	transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+	.gallery {
+		grid-template-columns: 1fr;
+	}
+}
