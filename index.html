@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        }
+
+        .container {
+            width: min(90vw, 420px);
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="password"]:focus {
+            border-color: #4a90e2;
+        }
+
+        .strength-bar {
+            width: 100%;
+            height: 12px;
+            margin-top: 20px;
+            background: #eee;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        #strength {
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        #message {
+            margin-top: 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Password Strength Checker</h1>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            autocomplete="off"
+        >
+
+        <div class="strength-bar">
+            <div id="strength"></div>
+        </div>
+
+        <p id="message">Enter a password</p>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.getElementById('strength');
+        const message = document.getElementById('message');
+
+        function checkStrength(password) {
+            let score = 0;
+
+            if (password.length >= 8) score += 1;
+            if (password.length >= 12) score += 1;
+            if (/[A-Z]/.test(password)) score += 1;
+            if (/[a-z]/.test(password)) score += 1;
+            if (/[0-9]/.test(password)) score += 1;
+            if (/[^A-Za-z0-9]/.test(password)) score += 1;
+
+            return score;
+        }
+
+        function updateStrength() {
+            const password = passwordInput.value;
+
+            if (!password) {
+                strengthBar.style.width = '0%';
+                strengthBar.style.backgroundColor = '#ddd';
+                message.textContent = 'Enter a password';
+                message.style.color = '#555';
+                return;
+            }
+
+            const score = checkStrength(password);
+            let percent = 0;
+            let label = '';
+            let color = '';
+
+            if (score <= 2) {
+                percent = 25;
+                label = 'Weak';
+                color = '#e74c3c';
+            } else if (score <= 4) {
+                percent = 60;
+                label = 'Medium';
+                color = '#f39c12';
+            } else {
+                percent = 100;
+                label = 'Strong';
+                color = '#2ecc71';
+            }
+
+            strengthBar.style.width = percent + '%';
+            strengthBar.style.backgroundColor = color;
+            message.textContent = 'Password strength: ' + label;
+            message.style.color = color;
+        }
+
+        passwordInput.addEventListener('input', updateStrength);
+    </script>
+</body>
+</html>
